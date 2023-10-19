@@ -6,9 +6,8 @@ import org.slf4j.LoggerFactory
 
 class Server {
     private val port = 9000;
-    companion object {
-        val logger: Logger = LoggerFactory.getLogger(Server::class.java)
-    }
+
+    private val logger: Logger = LoggerFactory.getLogger(Server::class.java)
 
     fun run() {
         val serverSocket = ServerSocket(port)
