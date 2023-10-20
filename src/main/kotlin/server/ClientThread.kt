@@ -2,29 +2,32 @@ package server
 
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import java.io.BufferedReader
-import java.io.InputStreamReader
-import java.io.PrintWriter
+import java.io.DataInputStream
+import java.io.DataInputStream.readUTF
+import java.io.DataOutputStream
+import java.io.InputStream
+import java.io.OutputStream
 import java.net.Socket
 
-class ClientThread(_clientSocket: Socket) : Thread() {
+class ClientThread(_clientSocket: Socket, _in : InputStream, _out : OutputStream) : Thread() {
     private val clientSocket : Socket
+    private val input : InputStream
+    private val output : OutputStream
     private val logger : Logger = LoggerFactory.getLogger(ClientThread::class.java)
     init {
         clientSocket = _clientSocket
+        input = _in
+        output = _out
     }
 
     override fun run() {
-        val reader = BufferedReader(InputStreamReader(clientSocket.getInputStream()))
-        val writer = PrintWriter(clientSocket.getOutputStream(), true)
+        val dis = DataInputStream(input)
+        val dos = DataOutputStream(output)
 
-        writer.println("Welcome to Server!")
+        val message = "Welcome to Server"
+        dos.writeUTF(message)
 
-        while (true) {
-            val clientMessage = reader.readLine() ?: break
-            logger.info(clientMessage)
-            writer.println("Your message: $clientMessage")
-        }
+        logger.info(readUTF(dis))
         clientSocket.close()
     }
 }
