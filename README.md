@@ -1,2 +1,2 @@
-# PC-temote-access
+# PC-remote-access
 Remote access management application
