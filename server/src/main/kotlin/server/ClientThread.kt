@@ -14,6 +14,9 @@ class ClientThread(_clientSocket: Socket, _in : InputStream, _out : OutputStream
     private val input : InputStream
     private val output : OutputStream
     private val logger : Logger = LoggerFactory.getLogger(ClientThread::class.java)
+    private val codeMsg : Int = 1
+    private val codeRotate : Int = 2
+    private val codeOff : Int = 3
     init {
         clientSocket = _clientSocket
         input = _in
@@ -27,7 +30,7 @@ class ClientThread(_clientSocket: Socket, _in : InputStream, _out : OutputStream
         val message = "Welcome to Server"
         dos.writeUTF(message)
 
-        logger.info(readUTF(dis))
+        logger.info(dis.readUTF())
         clientSocket.close()
     }
 }
