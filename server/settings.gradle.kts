@@ -7,3 +7,4 @@ pluginManagement {
 }
 rootProject.name = "PC_remote_access"
 
+include(":model")

@@ -5,6 +5,13 @@ import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import app.model.Code
+import app.model.Request
+import app.pc_remote_access.client.ClientThread
+import java.io.DataOutputStream
+import java.io.ObjectOutputStream
+import java.net.InetAddress
+import java.net.Socket
 
 class MainActivity() : AppCompatActivity() {
     private lateinit var serverIPAddress: String
@@ -24,7 +31,7 @@ class MainActivity() : AppCompatActivity() {
         val etIPAddress: EditText = findViewById(R.id.edIPaddress)
         serverIPAddress = etIPAddress.text.toString()
         if (serverIPAddress.isEmpty()) {
-            val msgToast: Toast = Toast.makeText(this, "Write ip address:" + R.id.btnPowerOff + " " + view.id, Toast.LENGTH_SHORT)
+            val msgToast: Toast = Toast.makeText(this, "Please write ip address!", Toast.LENGTH_SHORT)
             msgToast.show()
             return
         }
@@ -36,7 +43,7 @@ class MainActivity() : AppCompatActivity() {
                     codeCommand = codeMessage
                     clientThread.start()
                 } else {
-                    val msgToast : Toast = Toast.makeText(this, "Write message", Toast.LENGTH_SHORT)
+                    val msgToast : Toast = Toast.makeText(this, "Please write message!", Toast.LENGTH_SHORT)
                     msgToast.show()
                 }
             }

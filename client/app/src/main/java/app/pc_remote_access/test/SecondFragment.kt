@@ -1,4 +1,4 @@
-package app.pc_remote_access
+package app.pc_remote_access.test
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import app.pc_remote_access.R
 import app.pc_remote_access.databinding.FragmentSecondBinding
 
 /**

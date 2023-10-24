@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "PC_remote_access"
 include(":app")
+include(":model")
